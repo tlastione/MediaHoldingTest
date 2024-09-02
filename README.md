@@ -63,7 +63,7 @@ Accept: application/json
 
 ## Развертывание проекта
 
-Чтобы развернуть проект, выполните следующие команды:
+Чтобы развернуть проект, создайте файл .env и перенесите в него все из .env.example, а затем выполните следующие команды:
 
 * Если есть make:
     ```
@@ -74,6 +74,8 @@ Accept: application/json
   docker compose up -d --build
 
   docker compose exec --user=application app composer install
+
+  docker compose exec app php artisan migrate
   ```
 
 ## От себя

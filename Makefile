@@ -1,6 +1,7 @@
 install: 
 	@make up
 	@make composer-install
+	@make migrate
 
 up: 
 	@docker compose up -d --build
@@ -20,3 +21,5 @@ cc:
 	@docker-compose exec app php artisan cache:clear 
 	@docker-compose exec app php artisan route:clear
 
+migrate:
+	@docker compose exec app php artisan migrate
