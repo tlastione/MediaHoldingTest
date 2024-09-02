@@ -1,0 +1,237 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/products/sync": {
+            "post": {
+                "summary": "Синхронизировать продукты",
+                "description": "Синхронизация продуктов с внешним API и сохранение их в базе данных.",
+                "operationId": "c75dbb7cbdd288664fae2d97b14c00cc",
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "limit": {
+                                        "description": "Количество продуктов для получения",
+                                        "type": "integer",
+                                        "default": 30
+                                    },
+                                    "skip": {
+                                        "description": "Количество продуктов для пропуска",
+                                        "type": "integer",
+                                        "default": 0
+                                    },
+                                    "category": {
+                                        "description": "Категория продуктов для фильтрации",
+                                        "type": "string"
+                                    },
+                                    "search": {
+                                        "description": "Строка поиска для фильтрации продуктов",
+                                        "type": "string"
+                                    },
+                                    "created_at": {
+                                        "description": "Дата и время создания",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updated_at": {
+                                        "description": "Дата и время обновления",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешная синхронизация",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неверный запрос (некорректный JSON формат)"
+                    },
+                    "403": {
+                        "description": "Операция запрещена для данной сущности"
+                    },
+                    "415": {
+                        "description": "Неподдерживаемый тип данных (неверный заголовок Content-Type или Accept)"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации входных данных"
+                    },
+                    "406": {
+                        "description": "Неприемлемый формат данных (неверный заголовок Accept)"
+                    }
+                }
+            }
+        },
+        "/products": {
+            "post": {
+                "summary": "Добавить новый продукт",
+                "description": "Добавление нового продукта в базу данных.",
+                "operationId": "ad565f2b709621c6e8ec7ad369f81142",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "price",
+                                    "category",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Название продукта",
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "description": "Цена продукта",
+                                        "type": "number",
+                                        "format": "float"
+                                    },
+                                    "category": {
+                                        "description": "Категория продукта",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "Описание продукта",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Успешное добавление",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID продукта",
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "description": "Название продукта",
+                                            "type": "string"
+                                        },
+                                        "price": {
+                                            "description": "Цена продукта",
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "category": {
+                                            "description": "Категория продукта",
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "description": "Описание продукта",
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "description": "Дата и время создания",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Дата и время обновления",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неверный запрос (некорректный JSON формат)"
+                    },
+                    "403": {
+                        "description": "Операция запрещена для данной сущности"
+                    },
+                    "415": {
+                        "description": "Неподдерживаемый тип данных (неверный заголовок Content-Type или Accept)"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации входных данных"
+                    },
+                    "406": {
+                        "description": "Неприемлемый формат данных (неверный заголовок Accept)"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "title": "Product",
+                "required": [
+                    "title",
+                    "price",
+                    "category",
+                    "description"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID of the product",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "description": "Title of the product",
+                        "type": "string",
+                        "example": "iPhone 12"
+                    },
+                    "price": {
+                        "description": "Price of the product",
+                        "type": "number",
+                        "format": "float",
+                        "example": 799.99
+                    },
+                    "category": {
+                        "description": "Category of the product",
+                        "type": "string",
+                        "example": "smartphones"
+                    },
+                    "description": {
+                        "description": "Description of the product",
+                        "type": "string",
+                        "example": "The latest iPhone with all-new features."
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": []
+}

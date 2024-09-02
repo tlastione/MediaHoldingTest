@@ -1,0 +1,35 @@
+services:
+  app:
+    image: webdevops/php-nginx:8.3-alpine
+    container_name: laravel_app
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:80"
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+    networks:
+      - app-network
+    depends_on:
+      - database
+
+  database:
+    image: mysql:9.0
+    container_name: laravel_db
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mediaholding}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-mediaholding}
+    volumes:
+      - database_data:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  database_data:
