@@ -6,13 +6,8 @@ return [
         'default' => [
             'info' => [
                 'title' => 'My API Documentation',
-                'description' => 'API documentation for managing products and recipes',
+                'description' => 'API documentation for MediaHolding',
                 'version' => '1.0.0',
-                'contact' => [
-                    'name' => 'Your Name',
-                    'email' => 'your-email@example.com',
-                    'url' => 'http://example.com',
-                ],
             ],
             'servers' => [
                 [

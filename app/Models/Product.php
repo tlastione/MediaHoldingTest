@@ -16,7 +16,9 @@ use OpenApi\Attributes as OA;
         new OA\Property(property: 'title', type: 'string', description: 'Title of the product', example: 'iPhone 12'),
         new OA\Property(property: 'price', type: 'number', format: 'float', description: 'Price of the product', example: 799.99),
         new OA\Property(property: 'category', type: 'string', description: 'Category of the product', example: 'smartphones'),
-        new OA\Property(property: 'description', type: 'string', description: 'Description of the product', example: 'The latest iPhone with all-new features.')
+        new OA\Property(property: 'description', type: 'string', description: 'Description of the product', example: 'The latest iPhone with all-new features.'),
+        new OA\Property(property: 'created_at', type: 'string', format: 'date-time', description: 'Date and time of creation', example: '2024-09-01T10:00:00Z'),
+        new OA\Property(property: 'updated_at', type: 'string', format: 'date-time', description: 'Date and time of last update', example: '2024-09-01T10:00:00Z')
     ]
 )]
 class Product extends Model

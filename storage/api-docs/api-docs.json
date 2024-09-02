@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Documentation",
-        "description": "API",
+        "description": "API MediaHolding",
         "version": "1.0.0"
     },
     "servers": [
@@ -39,16 +39,6 @@
                                     "search": {
                                         "description": "Строка поиска для фильтрации продуктов",
                                         "type": "string"
-                                    },
-                                    "created_at": {
-                                        "description": "Дата и время создания",
-                                        "type": "string",
-                                        "format": "date-time"
-                                    },
-                                    "updated_at": {
-                                        "description": "Дата и время обновления",
-                                        "type": "string",
-                                        "format": "date-time"
                                     }
                                 },
                                 "type": "object"
@@ -134,40 +124,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "description": "ID продукта",
-                                            "type": "integer"
-                                        },
-                                        "title": {
-                                            "description": "Название продукта",
-                                            "type": "string"
-                                        },
-                                        "price": {
-                                            "description": "Цена продукта",
-                                            "type": "number",
-                                            "format": "float"
-                                        },
-                                        "category": {
-                                            "description": "Категория продукта",
-                                            "type": "string"
-                                        },
-                                        "description": {
-                                            "description": "Описание продукта",
-                                            "type": "string"
-                                        },
-                                        "created_at": {
-                                            "description": "Дата и время создания",
-                                            "type": "string",
-                                            "format": "date-time"
-                                        },
-                                        "updated_at": {
-                                            "description": "Дата и время обновления",
-                                            "type": "string",
-                                            "format": "date-time"
-                                        }
-                                    },
-                                    "type": "object"
+                                    "$ref": "#/components/schemas/Product"
                                 }
                             }
                         }
@@ -227,6 +184,18 @@
                         "description": "Description of the product",
                         "type": "string",
                         "example": "The latest iPhone with all-new features."
+                    },
+                    "created_at": {
+                        "description": "Date and time of creation",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-09-01T10:00:00Z"
+                    },
+                    "updated_at": {
+                        "description": "Date and time of last update",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-09-01T10:00:00Z"
                     }
                 },
                 "type": "object"

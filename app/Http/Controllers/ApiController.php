@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 #[OA\Info(
     title: 'API Documentation',
     version: '1.0.0',
-    description: 'API'
+    description: 'API MediaHolding'
 )]
 abstract class ApiController extends Controller
 {
