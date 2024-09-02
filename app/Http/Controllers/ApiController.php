@@ -64,7 +64,7 @@ abstract class ApiController extends Controller
         $addDTO = $this->getAddDTO($request);
 
         $response = $this->client->addItem($this->config['add_endpoint'], $addDTO->toArray());
-        $savedItem = $this->storeInDatabase($response);
+        $savedItem = $this->saveInDatabase($response);
 
         return response()->json(['status' => 'success', 'data' => $savedItem], 201);
     }
